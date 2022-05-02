@@ -1,0 +1,14 @@
+{% extends "base_with_search.html" %}
+   {% block added %}
+        {% if objects == [] %}
+            <div class="any_form word_form">
+                <a class="less_size">Такого слова нет :)</a>
+            </div>
+        {% else %}
+                {% for obj in objects %}
+                    <div class="any_form word_form">
+                        <a class="less_size">{{obj.name}}</a> — {{obj.about}} ({{obj.translate}})
+                    </div>
+                {% endfor %}
+        {% endif %}
+   {% endblock %}

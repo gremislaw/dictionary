@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="/">Тыва-орус сөстүк</a>
+                {% if current_user.is_authenticated %}
+                    <div class="navbar-style">
+                        <a>{{ current_user.surname}} {{ current_user.name}}</a>
+                        <a class="btn btn-outline-success btn-login" href="/logout">Выйти</a>
+                    </div>
+                {% else %}
+                    {% if request.path != "/login" %}
+                        <div>
+                            <a class="btn btn-outline-success" href="/login">Войти</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </nav>
+        </header>
+        <div class="main_form">
+            {% for msg in get_flashed_messages(category_filter=["success"]) %}
+                <div class="tn-box tn-box-color-1" id="mes1">
+                    <p>{{ msg }}</p>
+                    <div class="tn-progress"></div>
+                </div>
+                <script>
+                    setTimeout(function(){
+                    	document.getElementById('mes1').style.display = 'none';
+                    }, 4800);
+                </script>
+            {% endfor %}
+            {% for msg in get_flashed_messages(category_filter=["error"]) %}
+                <div class="tn-box tn-box-color-2" id="mes2">
+                    <p>{{ msg }}</p>
+                    <div class="tn-progress"></div>
+                </div>
+                <script>
+                    setTimeout(function(){
+                    	document.getElementById('mes2').style.display = 'none';
+                    }, 4800);
+                </script>
+            {% endfor %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+    <footer class="footer-style">
+        <div>
+            <p>Copyright ©&nbsp;2022 "TEBERMEN"</p>
+            Почта: <a href="mailto:hovalyg_d@mail.ru">hovalyg_d@mail.ru</a><br>
+            Телефон: <a href=tel:+79966099350">+79966099350</a>
+        </div>
+    </footer>
+</html>

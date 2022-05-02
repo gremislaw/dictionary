@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+   {% block content %}
+            {% if current_user.admin == 1 %}
+            <form class="classic_form" method="post">
+            <h1 class="to-center">Добавление слова (admin)</h1>
+                <div>
+                    <input type="search" class="form-control classic_form_input" id="new_word_name" placeholder="Название слова на тувинском" name="new_word_name">
+                    <input type="search" class="form-control classic_form_input" id="new_word_about" placeholder="Значение слова на тувинском" name="new_word_about">
+                    <input type="search" class="form-control classic_form_input" id="new_word_translate" placeholder="Перевод слова на русский" name="new_word_translate">
+                    <button type="submit" class="btn btn-classic search_form_button" name="some_button" value="add_word">Добавить</button>
+                </div>
+
+            </form>
+            {% endif %}
+            <form class="classic_form" method="post">
+                <h1 class="classic_form_heading">Словарь</h1>
+                <div>
+                    <input type="search" class="form-control classic_form_input" id="search" placeholder="Введите слово на тувинском" name="search">
+                    <button type="submit" class="btn btn-classic classic_form_button" name="some_button" value="search_word">Поиск</button>
+                </div>
+            </form>
+                {% block added %}{% endblock %}
+
+{% endblock %}
